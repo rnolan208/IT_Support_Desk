@@ -88,3 +88,32 @@ main {
     font-size: medium;  
     width: 100%; 
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+thead {
+    background-color: lightgrey;
+}
+
+th, 
+td {
+    text-align: left;
+    padding: 7px;
+}
+
+th {
+    border-bottom: 2px solid black;
+    text-align: center;
+    color: darkblue;
+}
+
+td {
+    border-bottom: 1px solid black;
+}
+
+tbody tr:hover {
+    background-color: lightsteelblue;
+}
