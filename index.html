@@ -34,17 +34,17 @@
             <div class="cards-layout">
                 <div class="card">
                     <h3>Open</h3>
-                    <p>4</p>
+                    <p id="open-card"></p>
                 </div>
 
                 <div class="card">
                     <h3>In Progress</h3>
-                    <p>2</p>
+                    <p id="progress-card"></p>
                 </div>
 
                 <div class="card">
                     <h3>Resolved</h3>
-                    <p>12</p>
+                    <p id="resolved-card"></p>
                 </div>
             </div>
 
@@ -61,29 +61,31 @@
                     <input type="text" aria-label="search for tickets" placeholder="Search tickets.." id="search">
                 </div>
 
-                <div class="tickets-status">
-                    <select id="statuses" aria-label="filters ticket statuses">
-                        <option value="all-statuses">All Statuses</option>
-                        <option value="open">Open</option>
-                        <option value="in-progress">In Progress</option>
-                        <option value="resolved">Resolved</option>
-                    </select>
-                </div>
-
                 <div class="tickets-priority">
                     <select id="priority" aria-label="filters ticket priorities">
                         <option value="all-priorities">All Priorities</option>
-                        <option value="low">Low</option>
-                        <option value="medium">Medium</option>
-                        <option value="high">High</option>
-                        <option value="critical">Critical</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                        <option value="Critical">Critical</option>
                     </select>
                 </div>
+
+                <div class="tickets-status">
+                    <select id="statuses" aria-label="filters ticket statuses">
+                        <option value="all-statuses">All Statuses</option>
+                        <option value="Open">Open</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Resolved">Resolved</option>
+                    </select>
+                </div>
+
+                
 
             </div>
 
 
-        <!-- Table -->
+            <!-- Table -->
             <table>
                 <thead>
                     <tr>
@@ -97,7 +99,7 @@
                 </thead>
 
                 <tbody id="table-body">
-                    
+
                 </tbody>
 
             </table>

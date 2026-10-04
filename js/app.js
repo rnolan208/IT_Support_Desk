@@ -24,15 +24,25 @@ const supportTickets = [
         priority: "Medium",
         status: "Resolved",
         updated: "-"
-    }
+    },
+    {
+        id: "TKT-1004",
+        issue: "Computer Screen Blue",
+        requester: "Sean M.",
+        priority: "Critical",
+        status: "Open",
+        updated: "-"
+    },
 ]
 
 const table = document.getElementById("table-body")
 
-console.log(table);
 
+function renderTickets(filteredTickets) {
 
-supportTickets.forEach(function(ticket) {
+    table.innerHTML = "";
+
+    filteredTickets.forEach(function(ticket) {
 
     const row = document.createElement("tr");
 
@@ -64,9 +74,74 @@ supportTickets.forEach(function(ticket) {
 
     console.log(row);
 
-
 });
 
+}
+
+renderTickets(supportTickets);
+
+
+const cardsOpen = document.getElementById("open-card");
+const cardsProgress = document.getElementById("progress-card");
+const cardsResolved = document.getElementById("resolved-card");
+
+
+const openTickets = supportTickets.filter(function(ticket) {
+    return ticket.status === "Open"  
+});
+
+cardsOpen.textContent = openTickets.length;
+
+const progressTickets = supportTickets.filter(function(ticket) {
+    return ticket.status === "In Progress"
+});
+
+cardsProgress.textContent = progressTickets.length;
+
+const resolvedTickets = supportTickets.filter(function(ticket) {
+    return ticket.status === "Resolved"
+});
+
+cardsResolved.textContent = resolvedTickets.length;
+
+const statusFilter = document.getElementById("statuses");
+
+
+
+statusFilter.addEventListener("change", function() {
+
+    const selectedStatus = statusFilter.value;
+
+    if (selectedStatus === "all-statuses") {
+        return renderTickets(supportTickets);
+    }
+
+    const filteredTickets = supportTickets.filter(function(ticket) {
+    return ticket.status === selectedStatus;
+});
+
+    renderTickets(filteredTickets);
+});
+
+
+
+const priorityFilter = document.getElementById("priority");
+
+
+priorityFilter.addEventListener("change", function() {
+
+    const selectedPriority = priorityFilter.value;
+
+    if (selectedPriority === "all-priorities") {
+        return renderTickets(supportTickets);
+    }
+
+    const filteredTickets = supportTickets.filter(function(ticket) {
+    return ticket.priority === selectedPriority;
+});
+
+    renderTickets(filteredTickets);
+});
 
 
 
