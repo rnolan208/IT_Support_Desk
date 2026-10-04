@@ -42,40 +42,37 @@ function renderTickets(filteredTickets) {
 
     table.innerHTML = "";
 
-    filteredTickets.forEach(function(ticket) {
+    filteredTickets.forEach(function (ticket) {
 
-    const row = document.createElement("tr");
+        const row = document.createElement("tr");
 
-    const idCell = document.createElement("td");
-    idCell.textContent = ticket.id;
-    row.appendChild(idCell);
+        const idCell = document.createElement("td");
+        idCell.textContent = ticket.id;
+        row.appendChild(idCell);
 
-    const issueCell = document.createElement("td");
-    issueCell.textContent = ticket.issue;
-    row.append(issueCell);
+        const issueCell = document.createElement("td");
+        issueCell.textContent = ticket.issue;
+        row.append(issueCell);
 
-    const requesterCell = document.createElement("td");
-    requesterCell.textContent = ticket.requester;
-    row.append(requesterCell);
+        const requesterCell = document.createElement("td");
+        requesterCell.textContent = ticket.requester;
+        row.append(requesterCell);
 
-    const priorityCell = document.createElement("td");
-    priorityCell.textContent = ticket.priority;
-    row.append(priorityCell);
+        const priorityCell = document.createElement("td");
+        priorityCell.textContent = ticket.priority;
+        row.append(priorityCell);
 
-    const statusCell = document.createElement("td");
-    statusCell.textContent = ticket.status;
-    row.append(statusCell);
+        const statusCell = document.createElement("td");
+        statusCell.textContent = ticket.status;
+        row.append(statusCell);
 
-    const updatedCell = document.createElement("td");
-    updatedCell.textContent = ticket.updated;
-    row.append(updatedCell);
+        const updatedCell = document.createElement("td");
+        updatedCell.textContent = ticket.updated;
+        row.append(updatedCell);
 
-    table.append(row);
+        table.append(row);
 
-    console.log(row);
-
-});
-
+    });
 }
 
 renderTickets(supportTickets);
@@ -86,62 +83,69 @@ const cardsProgress = document.getElementById("progress-card");
 const cardsResolved = document.getElementById("resolved-card");
 
 
-const openTickets = supportTickets.filter(function(ticket) {
-    return ticket.status === "Open"  
+const openTickets = supportTickets.filter(function (ticket) {
+    return ticket.status === "Open"
 });
 
 cardsOpen.textContent = openTickets.length;
 
-const progressTickets = supportTickets.filter(function(ticket) {
+const progressTickets = supportTickets.filter(function (ticket) {
     return ticket.status === "In Progress"
 });
 
 cardsProgress.textContent = progressTickets.length;
 
-const resolvedTickets = supportTickets.filter(function(ticket) {
+const resolvedTickets = supportTickets.filter(function (ticket) {
     return ticket.status === "Resolved"
 });
 
 cardsResolved.textContent = resolvedTickets.length;
 
+const searchInput = document.getElementById("search");
+
+searchInput.addEventListener("input", function () {
+    applyFilters();
+});
+
 const statusFilter = document.getElementById("statuses");
 
+statusFilter.addEventListener("change", function () {
 
+    applyFilters();
 
-statusFilter.addEventListener("change", function() {
-
-    const selectedStatus = statusFilter.value;
-
-    if (selectedStatus === "all-statuses") {
-        return renderTickets(supportTickets);
-    }
-
-    const filteredTickets = supportTickets.filter(function(ticket) {
-    return ticket.status === selectedStatus;
 });
-
-    renderTickets(filteredTickets);
-});
-
-
 
 const priorityFilter = document.getElementById("priority");
 
+priorityFilter.addEventListener("change", function () {
 
-priorityFilter.addEventListener("change", function() {
+    applyFilters();
 
-    const selectedPriority = priorityFilter.value;
-
-    if (selectedPriority === "all-priorities") {
-        return renderTickets(supportTickets);
-    }
-
-    const filteredTickets = supportTickets.filter(function(ticket) {
-    return ticket.priority === selectedPriority;
 });
+
+
+function applyFilters() {
+    const selectedStatus = statusFilter.value;
+    const selectedPriority = priorityFilter.value;
+    const searchTerm = searchInput.value.toLowerCase();
+
+
+    const filteredTickets = supportTickets.filter(function (ticket) {
+        const matchesStatus = selectedStatus === "all-statuses" || ticket.status === selectedStatus;
+
+        const matchesPriority = selectedPriority === "all-priorities" || ticket.priority === selectedPriority;
+
+        const matchesSearch =
+            ticket.issue.toLowerCase().includes(searchTerm) ||
+            ticket.requester.toLowerCase().includes(searchTerm) ||
+            ticket.id.toLowerCase().includes(searchTerm);
+
+        return matchesStatus && matchesPriority && matchesSearch;
+    });
 
     renderTickets(filteredTickets);
-});
+}
 
+applyFilters();
 
 
