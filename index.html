@@ -3,12 +3,132 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Create, Read, Update, and Delete Application</title>
+    <title>IT Support Desk</title>
 
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
+    <header>
+        <div class="header-title">
+            <h1>IT Support Desk</h1>
+            <p>Support Ticket Management</p>
+        </div>
+
+        <div class="header-button">
+            <button>
+                + New Ticket
+            </button>
+        </div>
+
+    </header>
+
+    <main>
+
+        <!-- Cards -->
+        <section>
+            <div class="cards-title">
+                <h2>Dashboard</h2>
+            </div>
+
+            <div class="cards-layout">
+                <div class="card">
+                    <h3>Open</h3>
+                    <p>4</p>
+                </div>
+
+                <div class="card">
+                    <h3>In Progress</h3>
+                    <p>2</p>
+                </div>
+
+                <div class="card">
+                    <h3>Resolved</h3>
+                    <p>12</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Tickets -->
+        <section>
+            <div class="tickets-title">
+                <h2>Tickets</h2>
+            </div>
+
+            <div class="tickets-layout">
+                <div class="tickets-search">
+                    <input type="text" aria-label="search for tickets" placeholder="Search tickets.." id="search">
+                </div>
+
+                <div class="tickets-status">
+                    <select id="statuses" aria-label="filters ticket statuses">
+                        <option value="all-statuses">All Statuses</option>
+                        <option value="open">Open</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="resolved">Resolved</option>
+                    </select>
+                </div>
+
+                <div class="tickets-priority">
+                    <select id="priority" aria-label="filters ticket priorities">
+                        <option value="all-priorities">All Priorities</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                        <option value="critical">Critical</option>
+                    </select>
+                </div>
+
+            </div>
+
+
+        <!-- Table -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Issue</th>
+                        <th>Requester</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Updated</th>
+                    </tr>
+                </thead>
+
+                <tbody id="table-body">
+                    <tr>
+                        <td>TKT-1001</td>
+                        <td>Printer unavailable</td>
+                        <td>Mike H.</td>
+                        <td>Low</td>
+                        <td>Open</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr>
+                        <td>TKT-1005</td>
+                        <td>Account locked</td>
+                        <td>Lisa K.</td>
+                        <td>High</td>
+                        <td>In Progress</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr>
+                        <td>TKT-1003</td>
+                        <td>Software installation</td>
+                        <td>Mark S.</td>
+                        <td>Medium</td>
+                        <td>Resolved</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </section>
+
+    </main>
 
 
     <script src="js/app.js"></script>
