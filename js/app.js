@@ -83,6 +83,8 @@ const cardsProgress = document.getElementById("progress-card");
 const cardsResolved = document.getElementById("resolved-card");
 
 
+function updateDashboard() {
+
 const openTickets = supportTickets.filter(function (ticket) {
     return ticket.status === "Open"
 });
@@ -100,6 +102,9 @@ const resolvedTickets = supportTickets.filter(function (ticket) {
 });
 
 cardsResolved.textContent = resolvedTickets.length;
+
+}
+
 
 const searchInput = document.getElementById("search");
 
@@ -186,8 +191,11 @@ newTicketForm.addEventListener("submit", function (event) {
     applyFilters();
     newTicketForm.reset();
     newTicketDialog.close();
+    updateDashboard();
 });
 
 applyFilters();
+
+updateDashboard();
 
 
