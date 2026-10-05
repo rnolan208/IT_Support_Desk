@@ -146,6 +146,48 @@ function applyFilters() {
     renderTickets(filteredTickets);
 }
 
+const createNewTicket = document.getElementById("new-ticket");
+const newTicketDialog = document.getElementById("new-ticket-dialog");
+const cancelTicket = document.getElementById("cancel-ticket");
+const newTicketForm = document.getElementById("new-ticket-form");
+const ticketIssue = document.getElementById("ticket-issue");
+const ticketRequester = document.getElementById("ticket-requester");
+const ticketPriority = document.getElementById("ticket-priority");
+
+let nextTicketNumber = 1006;
+
+createNewTicket.addEventListener("click", function () {
+
+    newTicketDialog.showModal();
+
+});
+
+cancelTicket.addEventListener("click", function () {
+    newTicketDialog.close();
+}
+);
+
+
+newTicketForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const newTicket = {
+        issue: ticketIssue.value,
+        requester: ticketRequester.value,
+        priority: ticketPriority.value,
+        id: `TKT-${nextTicketNumber}`,
+        status: "Open",
+        updated: "-"
+    };
+
+    
+    supportTickets.push(newTicket)
+    nextTicketNumber++;
+    applyFilters();
+    newTicketForm.reset();
+    newTicketDialog.close();
+});
+
 applyFilters();
 
 
