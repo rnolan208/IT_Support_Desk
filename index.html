@@ -95,6 +95,7 @@
                         <th>Priority</th>
                         <th>Status</th>
                         <th>Updated</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
 
@@ -108,6 +109,7 @@
     </main>
 
 
+    <!-- New Ticket -->
     <dialog id="new-ticket-dialog">
         <form id="new-ticket-form">
             <h2>New Support Ticket</h2>
@@ -141,6 +143,39 @@
                 <button type="button" id="cancel-ticket">Cancel</button>
             </div>
 
+        </form>
+    </dialog>
+
+    <!-- Edit Ticket -->
+    <dialog id="edit-ticket-dialog">
+        <form id="edit-ticket-form">
+            <h2>Edit Support Ticket</h2>
+
+            <p>
+                Ticket: <span id="ticket-id"></span>
+            </p>
+
+            <p>
+                Issue: <span id="ticket-issue-edit"></span>
+            </p>
+
+            <div>
+                <label for="edit-ticket-status">Status</label>
+
+                <select id="edit-ticket-status" required>
+
+                    <option value="Open">Open</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Resolved">Resolved</option>
+
+                </select>
+            </div>
+
+            <div>
+                <button type="submit">Save Changes</button>
+
+                <button type="button" id="cancel-edit-ticket">Cancel</button>
+            </div>
         </form>
     </dialog>
 

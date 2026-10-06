@@ -7,16 +7,6 @@ const supportTickets = [
         status: "Open",
         updated: "-"
     },
-
-    {
-        id: "TKT-1005",
-        issue: "Account locked",
-        requester: "Lisa K.",
-        priority: "High",
-        status: "In Progress",
-        updated: "-"
-    },
-
     {
         id: "TKT-1003",
         issue: "Software installation",
@@ -31,6 +21,14 @@ const supportTickets = [
         requester: "Sean M.",
         priority: "Critical",
         status: "Open",
+        updated: "-"
+    },
+    {
+        id: "TKT-1005",
+        issue: "Account locked",
+        requester: "Lisa K.",
+        priority: "High",
+        status: "In Progress",
         updated: "-"
     },
 ]
@@ -70,6 +68,26 @@ function renderTickets(filteredTickets) {
         updatedCell.textContent = ticket.updated;
         row.append(updatedCell);
 
+        const actionCell = document.createElement("td");
+        const editButton = document.createElement("button");
+        editButton.textContent = "Edit";
+
+        editButton.addEventListener( "click", function () {
+
+            ticketBeingEdited = ticket;
+            
+            editTicketStatus.value = ticket.status;
+
+            editTicketId.textContent = ticket.id;
+            editTicketIssue.textContent = ticket.issue;
+            
+            editTicketDialog.showModal();
+        })
+
+        actionCell.append(editButton);
+        row.append(actionCell);
+
+
         table.append(row);
 
     });
@@ -85,23 +103,23 @@ const cardsResolved = document.getElementById("resolved-card");
 
 function updateDashboard() {
 
-const openTickets = supportTickets.filter(function (ticket) {
-    return ticket.status === "Open"
-});
+    const openTickets = supportTickets.filter(function (ticket) {
+        return ticket.status === "Open"
+    });
 
-cardsOpen.textContent = openTickets.length;
+    cardsOpen.textContent = openTickets.length;
 
-const progressTickets = supportTickets.filter(function (ticket) {
-    return ticket.status === "In Progress"
-});
+    const progressTickets = supportTickets.filter(function (ticket) {
+        return ticket.status === "In Progress"
+    });
 
-cardsProgress.textContent = progressTickets.length;
+    cardsProgress.textContent = progressTickets.length;
 
-const resolvedTickets = supportTickets.filter(function (ticket) {
-    return ticket.status === "Resolved"
-});
+    const resolvedTickets = supportTickets.filter(function (ticket) {
+        return ticket.status === "Resolved"
+    });
 
-cardsResolved.textContent = resolvedTickets.length;
+    cardsResolved.textContent = resolvedTickets.length;
 
 }
 
@@ -158,8 +176,16 @@ const newTicketForm = document.getElementById("new-ticket-form");
 const ticketIssue = document.getElementById("ticket-issue");
 const ticketRequester = document.getElementById("ticket-requester");
 const ticketPriority = document.getElementById("ticket-priority");
+const editTicketDialog = document.getElementById("edit-ticket-dialog");
+const editTicketStatus = document.getElementById("edit-ticket-status");
+const cancelEditTicket = document.getElementById("cancel-edit-ticket");
+const editTicketForm = document.getElementById("edit-ticket-form");
+const editTicketId = document.getElementById("ticket-id");
+const editTicketIssue = document.getElementById("ticket-issue-edit");
 
 let nextTicketNumber = 1006;
+let ticketBeingEdited = null;
+
 
 createNewTicket.addEventListener("click", function () {
 
@@ -171,6 +197,10 @@ cancelTicket.addEventListener("click", function () {
     newTicketDialog.close();
 }
 );
+
+cancelEditTicket.addEventListener("click", function () {
+    editTicketDialog.close();
+});
 
 
 newTicketForm.addEventListener("submit", function (event) {
@@ -185,13 +215,25 @@ newTicketForm.addEventListener("submit", function (event) {
         updated: "-"
     };
 
-    
+
     supportTickets.push(newTicket)
     nextTicketNumber++;
     applyFilters();
     newTicketForm.reset();
     newTicketDialog.close();
     updateDashboard();
+});
+
+editTicketForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    ticketBeingEdited.status = editTicketStatus.value;
+    ticketBeingEdited.updated = new Date().toLocaleDateString();
+
+    applyFilters();
+    editTicketDialog.close();
+    updateDashboard();
+    
 });
 
 applyFilters();

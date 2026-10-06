@@ -131,26 +131,31 @@ dialog::backdrop {
     background: rgba(0, 0, 0, 0.4);
 }
 
-#new-ticket-form {
+#new-ticket-form,
+#edit-ticket-form {
     padding: 25px;
 }
 
-#new-ticket-form h2 {
+#new-ticket-form h2,
+#edit-ticket-form h2 {
     margin-bottom: 20px;
 }
 
-#new-ticket-form > div {
+#new-ticket-form > div,
+#edit-ticket-form > div {
     margin-bottom: 15px;
 }
 
-#new-ticket-form label {
+#new-ticket-form label,
+#edit-ticket-form label {
     display: block;
     margin-bottom: 6px;
     font-weight: bold;
 }
 
 #new-ticket-form input,
-#new-ticket-form select {
+#new-ticket-form select,
+#edit-ticket-form select {
     width: 100%;
     padding: 10px;
     border: 2px solid lightgrey;
@@ -158,14 +163,16 @@ dialog::backdrop {
     font-size: 16px;
 }
 
-#new-ticket-form > div:last-child {
+#new-ticket-form > div:last-child,
+#edit-ticket-form > div:last-child {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
     margin-bottom: 0;
 }
 
-#new-ticket-form button {
+#new-ticket-form button,
+#edit-ticket-form button {
     padding: 10px 16px;
     border-radius: 4px;
     font-size: 15px;
@@ -173,13 +180,15 @@ dialog::backdrop {
     cursor: pointer;
 }
 
-#cancel-ticket {
+#cancel-ticket,
+#cancel-edit-ticket {
     background-color: white;
     color: navy;
     border: 2px solid lightgrey;
 }
 
-#new-ticket-form button[type="submit"] {
+#new-ticket-form button[type="submit"],
+#edit-ticket-form button[type="submit"] {
     background-color: navy;
     color: white;
     border: 2px solid navy;
