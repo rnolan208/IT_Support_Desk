@@ -28,14 +28,10 @@ This project was built to strengthen my practical JavaScript skills, particularl
 - New tickets automatically assigned an Open status
 - Form validation using required fields
 - Responsive browser-based interface
+- Update, Edit, Resolve, and Manage ticket status
 
 ## Planned Features
 
-- Update ticket status
-- Edit existing tickets
-- Resolve and manage tickets
-- Improved dashboard updates
-- Improved modal and interface styling
 - Persistent ticket data using browser storage
 - Additional validation and usability improvements
 
