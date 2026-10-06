@@ -8,6 +8,14 @@ const supportTickets = [
         updated: "-"
     },
     {
+        id: "TKT-1002",
+        issue: "Password Reset",
+        requester: "Frank McP.",
+        priority: "Medium",
+        status: "In Progress",
+        updated: "-"
+    },
+    {
         id: "TKT-1003",
         issue: "Software installation",
         requester: "Mark S.",
@@ -72,19 +80,36 @@ function renderTickets(filteredTickets) {
         const editButton = document.createElement("button");
         editButton.textContent = "Edit";
 
-        editButton.addEventListener( "click", function () {
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+
+        actionCell.classList.add("action-buttons");
+        editButton.classList.add("edit-button");
+        deleteButton.classList.add("delete-button");
+
+        editButton.addEventListener("click", function () {
 
             ticketBeingEdited = ticket;
-            
+
             editTicketStatus.value = ticket.status;
 
             editTicketId.textContent = ticket.id;
             editTicketIssue.textContent = ticket.issue;
-            
+
             editTicketDialog.showModal();
-        })
+        });
+
+        deleteButton.addEventListener("click", function () {
+
+            ticketBeingDeleted = ticket;
+
+            deleteTicketId.textContent = ticket.id;
+            deleteTicketDialog.showModal();
+
+        });
 
         actionCell.append(editButton);
+        actionCell.append(deleteButton);
         row.append(actionCell);
 
 
@@ -182,9 +207,15 @@ const cancelEditTicket = document.getElementById("cancel-edit-ticket");
 const editTicketForm = document.getElementById("edit-ticket-form");
 const editTicketId = document.getElementById("ticket-id");
 const editTicketIssue = document.getElementById("ticket-issue-edit");
+const deleteTicketId = document.getElementById("delete-ticket-id");
+const deleteTicketDialog = document.getElementById("delete-ticket-dialog");
+const cancelDeleteTicket = document.getElementById("cancel-delete-ticket");
+const confirmDeleteTicket = document.getElementById("confirm-delete-ticket");
+
 
 let nextTicketNumber = 1006;
 let ticketBeingEdited = null;
+let ticketBeingDeleted = null;
 
 
 createNewTicket.addEventListener("click", function () {
@@ -233,8 +264,29 @@ editTicketForm.addEventListener("submit", function (event) {
     applyFilters();
     editTicketDialog.close();
     updateDashboard();
-    
+
 });
+
+
+cancelDeleteTicket.addEventListener("click", function () {
+
+    deleteTicketDialog.close();
+})
+
+confirmDeleteTicket.addEventListener("click", function () {
+
+    const ticketIndex = supportTickets.indexOf(ticketBeingDeleted);
+
+    if (ticketIndex !== -1) {
+        supportTickets.splice(ticketIndex, 1);
+    }
+
+    applyFilters();
+    updateDashboard();
+    deleteTicketDialog.close();
+
+});
+
 
 applyFilters();
 
