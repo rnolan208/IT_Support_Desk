@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browser-based IT support ticket management demo created using HTML, CSS and JavaScript.">
     <title>IT Support Desk</title>
 
     <link rel="stylesheet" href="css/styles.css">
@@ -16,7 +18,7 @@
         </div>
 
         <div class="header-button">
-            <button id="new-ticket">
+            <button type="button" id="new-ticket">
                 + New Ticket
             </button>
         </div>
@@ -25,7 +27,7 @@
 
     <main>
 
-        <!-- Cards -->
+        <!-- Cards for Dashboard via JavaScript -->
         <section>
             <div class="cards-title">
                 <h2>Dashboard</h2>
@@ -50,7 +52,7 @@
 
         </section>
 
-        <!-- Tickets -->
+        <!-- Tickets - search, filter -->
         <section>
             <div class="tickets-title">
                 <h2>Tickets</h2>
@@ -85,7 +87,7 @@
             </div>
 
 
-            <!-- Table -->
+            <!-- Table row made via JS - renderTickets() -->
             <table>
                 <thead>
                     <tr>
@@ -109,7 +111,7 @@
     </main>
 
 
-    <!-- New Ticket -->
+    <!-- Create New Ticket -->
     <dialog id="new-ticket-dialog">
         <form id="new-ticket-form">
             <h2>New Support Ticket</h2>
@@ -147,7 +149,7 @@
     </dialog>
 
 
-    <!-- Edit Ticket -->
+    <!-- Edit Ticket Status -->
     <dialog id="edit-ticket-dialog">
         <form id="edit-ticket-form">
             <h2>Edit Support Ticket</h2>
@@ -181,7 +183,7 @@
     </dialog>
 
 
-    <!-- Delete Ticket -->
+    <!-- Delete Ticket Confirmation -->
     <dialog id="delete-ticket-dialog">
         <div id="delete-ticket-content">
             <h2>Delete Ticket</h2>

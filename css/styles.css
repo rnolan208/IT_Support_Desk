@@ -1,3 +1,5 @@
+/* Base styles */
+
 body {
     background-color: rgb(247, 243, 239);
     font-family: Arial, Helvetica, sans-serif;
@@ -19,6 +21,9 @@ p {
     padding: 0px;
     box-sizing: border-box;
 }
+
+
+/* Header and new-ticket button */
 
 header {
     display: flex;
@@ -50,6 +55,9 @@ header {
     cursor: pointer;
 }
 
+
+/* Main layout and dashboard cards */
+
 main {
     max-width: 1200px;
     padding: 40px;
@@ -71,6 +79,9 @@ main {
     gap: 15px;
 }
 
+
+/* Ticket search and filters */
+
 .tickets-layout {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -88,6 +99,9 @@ main {
     font-size: medium;
     width: 100%;
 }
+
+
+/* Ticket table */
 
 table {
     border-collapse: collapse;
@@ -118,6 +132,8 @@ tbody tr:hover {
     background-color: lightsteelblue;
 }
 
+
+/* Create, edit and delete dialogs */
 
 dialog {
     width: 420px;
@@ -208,6 +224,9 @@ dialog::backdrop {
     color: white;
     border: 2px solid indianred;
 }
+
+
+/* Edit and delete actions wihtin table row */
 
 .action-buttons {
     display: flex;
